@@ -8,8 +8,8 @@ This Streamlit app forecasts sales for the Guayas region using the best XGBoost 
 ## Model Choice & Performance
 - **Model:** XGBoost (fast, reliable, strong validation performance)
 - **Metrics from Sprint 3:**
-  - RMSE: <insert RMSE here>
-  - MAE: <insert MAE here>
+  - RMSE: 3.653
+  - MAE: 0.758
 - The model was trained on historical sales data and engineered features to predict unit sales accurately.
 
 ## Project Structure
@@ -18,18 +18,18 @@ retail_demand_forcasting/
 ├── app/
 │ ├── main.py # Streamlit app UI
 │ ├── config.py # Paths and constants
-│ ├── init.py
+│ ├── __init__.py
 │ ├── tuned_xgb_model.pkl
 │ ├── feature_columns.pkl
 │ └── xbg_df.csv
 │
 ├── data/
 │ ├── data_utils.py
-│ └── init.py
+│ └── __init__.py
 │
 ├── model/
 │ ├── model_utils.py
-│ └── init.py
+│ └── __init__.py
 │
 ├── mlflow_results/ # MLflow experiments (Colab)
 ├── requirements.txt
@@ -39,20 +39,35 @@ retail_demand_forcasting/
 ## Setup & Run Instructions
 1. Clone the repository:
 
-```bash
-git clone <your_repo_link>
+```
+git clone https://github.com/NyafeuKamdem/retail_demand_forcasting
 cd retail_demand_forcasting
-
+```
 
 2. Install dependencies:
+
+```
 pip install -r requirements.txt
+```
+
+3. Place the dataset locally:
+
+Download xbg_df.csv (108 MB) separately and save it in:
+````
+/Users/pnyaf/Documents/Datasets/xbg_df.csv
+````
+Then, in app/main.py, ensure the data path matches:
+data = pd.read_csv("/Users/pnyaf/Documents/Datasets/xbg_df.csv")
 
 
-3. Run the Streamlit app:
+4. Run the Streamlit app:
+
+```
 streamlit run app/main.py
+```
 
 
-4. In the app:
+5. In the app:
 
 Select Store ID
 
@@ -63,9 +78,8 @@ Select Date range (Jan–Mar 2014)
 Click Get Forecast to see predictions, metrics, and plots.
 
 
-Notes
-Only one store–SKU combination is included to keep the app fast and reliable.
+## Notes
+- Only one store–SKU combination is included to keep the app fast and reliable.  
+- MLflow tracking is only on Google Colab; no local MLflow setup is needed.  
+- tuned_xgb_model.pkl, feature_columns.pkl, and xbg_df.csv are required for the app. The CSV is not in GitHub due to its size.
 
-MLflow tracking is only on Google Colab; no local MLflow setup is needed.
-
-Ensure tuned_xgb_model.pkl, feature_columns.pkl, and xbg_df.csv are in the app/ folder.

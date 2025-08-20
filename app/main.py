@@ -13,7 +13,7 @@ BASE_DIR = os.path.dirname(__file__)  # folder containing main.py
 # --- Load model, features, and dataset ---
 model = joblib.load(os.path.join(BASE_DIR, "tuned_xgb_model.pkl"))
 feature_columns = joblib.load(os.path.join(BASE_DIR, "feature_columns.pkl"))
-data = pd.read_csv(os.path.join(BASE_DIR, "xbg_df.csv"))
+data = pd.read_csv("/Users/pnyaf/Documents/Datasets/xbg_df.csv")
 
 # Ensure proper date format
 data['date'] = pd.to_datetime(data['date'])
